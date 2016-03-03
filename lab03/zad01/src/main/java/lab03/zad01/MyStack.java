@@ -15,7 +15,7 @@ public class MyStack {
 	}
 
 	public boolean isNull(){
-		if (stack == null){
+		if (stack.isEmpty()){
 			return true;
 		}
 		else return false;
