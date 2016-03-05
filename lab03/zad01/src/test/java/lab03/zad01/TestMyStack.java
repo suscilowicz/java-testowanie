@@ -2,7 +2,12 @@ package lab03.zad01;
 
 import static org.junit.Assert.*;
 
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.*;
+//import static org.hamcrest.Matcher.*;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -40,6 +45,12 @@ public class TestMyStack {
 		}
 	}
 	
-	
+	@Test
+	public void testPop() {
+		mystack.setStack(new ArrayList <Integer>(){{add(1);add(2);add(3);}});
+		mystack.myPop();
+		List <Integer> result = mystack.getStack();
+		assertThat(result, contains(1,2));
+	}
 
 }
