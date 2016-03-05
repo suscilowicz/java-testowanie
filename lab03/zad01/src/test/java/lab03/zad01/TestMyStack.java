@@ -33,6 +33,13 @@ public class TestMyStack {
 	}
 	
 	@Test
+	public void testIsNullWhenIsNotNull() {
+		mystack.setStack(new ArrayList <Integer>(){{add(1);add(2);}});
+		boolean result = mystack.isNull();
+		assertEquals(result, false);
+	}
+	
+	@Test
 	public void testTopWhenStackIsNull(){
 		try {
 			mystack.setStack(new ArrayList <Integer>());
@@ -41,6 +48,18 @@ public class TestMyStack {
 		}
 		catch (ArrayIndexOutOfBoundsException e){
 			assertTrue(true);
+		}
+	}
+	
+	@Test
+	public void testTopWhenStackIsNotNull(){
+		try {
+			mystack.setStack(new ArrayList <Integer>(){{add(1);add(2);}});
+			mystack.myTop();
+			assertTrue(true);
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			fail("Stack is null");
 		}
 	}
 	
@@ -61,6 +80,18 @@ public class TestMyStack {
 		}
 		catch (ArrayIndexOutOfBoundsException e){
 			assertTrue(true);
+		}
+	}
+	
+	@Test
+	public void testPopWhenStackIsNotNull(){
+		try {
+			mystack.setStack(new ArrayList <Integer>(){{add(1);add(2);}});
+			mystack.myPop();
+			assertTrue(true);
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			fail("Stack is null");
 		}
 	}
 	
