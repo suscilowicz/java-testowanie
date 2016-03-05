@@ -27,14 +27,14 @@ public class MyStack {
 	
 	public void myPop (){
 		if (stack == null){
-			throw new NullPointerException();
+			throw new ArrayIndexOutOfBoundsException();
 		}
 		else stack.remove(stack.size()-1);
 	}
 	
 	public int myTop(){
 		if (stack == null){
-			throw new NullPointerException();
+			throw new ArrayIndexOutOfBoundsException();
 		}
 		else return stack.get(stack.size()-1);
 	}
