@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Kontrakt implements Psikus {
 	Random random = new Random();
+	public Integer cukierek = 0;
 
 	public Integer CyfroKrad(Integer liczba) {
 		if (liczba.toString().length()<2) return null;

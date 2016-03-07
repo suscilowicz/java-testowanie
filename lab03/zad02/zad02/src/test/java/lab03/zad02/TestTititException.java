@@ -2,12 +2,11 @@ package lab03.zad02;
 
 import static org.junit.Assert.*;
 
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestHeheszkiException {
+public class TestTititException {
 	private Kontrakt kontrakt;
 
 	@Before
@@ -19,31 +18,21 @@ public class TestHeheszkiException {
 	public void tearDown() throws Exception {
 		kontrakt = null;
 	}
-	
+
 	@Test
-	public void testHeheszkiThrowException() {
+	public void testTititThrowArithmeticException() {
 		try {
-			kontrakt.Heheszki(-2);
+			kontrakt.Titit(0);
 			fail("Test is incorrect");
-		} catch (IllegalArgumentException e) {
+		} catch (ArithmeticException e) {
 			assertTrue(true);
 		}
 	}
 	
 	@Test
-	public void testHeheszkiMinInt() {
+	public void testTititThrowNullPointerException() {
 		try {
-			kontrakt.Heheszki(Integer.MIN_VALUE);
-			fail("Test is incorrect");
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		}
-	}
-	
-	@Test
-	public void testHeheszkiNull() {
-		try {
-			kontrakt.Heheszki(null);
+			kontrakt.Titit(null);
 			fail("Test is incorrect");
 		} catch (NullPointerException e) {
 			assertTrue(true);
