@@ -39,27 +39,24 @@ public class Kontrakt implements Psikus {
 			int whatChange = position[whereIsChange];
 			if (convertChars[whatChange] =='3'){
 				convertChars[whatChange]='8';
-				convert = String.valueOf(convertChars);
-				return (Integer.parseInt(convert));
 			}
 			else if (convertChars[whatChange]=='7'){
 				convertChars[whatChange]='1';
-				convert = String.valueOf(convertChars);
-				return (Integer.parseInt(convert));
 			}
 			else{
 				convertChars[whatChange]='6';
-				convert = String.valueOf(convertChars);
-				return (Integer.parseInt(convert));
 			}
-			
+			convert = String.valueOf(convertChars);
+			return (Integer.parseInt(convert));
 		}
 	}
 
 
 	public Integer Heheszki(Integer liczba) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (liczba < 0) 
+			throw new IllegalArgumentException();
+		else if (liczba == 0) return 0;
+		else return random.nextInt(liczba);
 	}
 
 	public boolean Titit(Integer liczba_dziel) {
