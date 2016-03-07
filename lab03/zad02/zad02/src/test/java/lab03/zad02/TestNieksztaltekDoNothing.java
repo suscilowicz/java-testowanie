@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.is;
 
 import org.junit.After;
 import org.junit.Before;
@@ -17,29 +17,35 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class TestCyfroKradCorrectWithParams {
+public class TestNieksztaltekDoNothing {
 	private Kontrakt kontrakt;
 	private int testData;
-	private ArrayList<Integer> expectedResult;
-	public TestCyfroKradCorrectWithParams(int data, ArrayList<Integer>expected){
-		testData = data;
-		expectedResult = expected;
-	}
+	private int expectedResult;
 	
 	@Parameters
     public static Iterable<Object[]> data() {
         return Arrays.asList(
         	new Object[][]{ 
-        		{468, new ArrayList<Integer>() {{ add(46); add(48); add(68); }}},
-               	{-987, new ArrayList<Integer>() {{ add(-98); add(-87); add(-97); }}},
-               	{888, new ArrayList<Integer>() {{ add(88); }}}
+        		{1, 1},
+               	{22, 22},
+               	{245, 245},
+               	{0,0},
+               	{888999, 888999},
+               	{-888999, -888999},
+               	{-1, -1},
+               	{-4545, -4545},
+               	{-12458, -12458}
         	});
     }
+    
+    public TestNieksztaltekDoNothing(int data, int expected){
+		testData = data;
+		expectedResult = expected;
+	}
 
 	@Before
 	public void setUp() throws Exception {
 		kontrakt = new Kontrakt();
-		
 	}
 
 	@After
@@ -48,9 +54,9 @@ public class TestCyfroKradCorrectWithParams {
 	}
 
 	@Test
-	public void testThreeDigits() {
-		int result = kontrakt.CyfroKrad(testData);
-		assertThat(expectedResult, hasItem(result));
+	public void testWhereNieksztaltekDoNothing() {
+		int result = kontrakt.Nieksztaltek(testData);
+		assertThat(result, is(expectedResult));
 	}
 
 }
