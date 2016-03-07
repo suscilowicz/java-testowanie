@@ -28,8 +28,8 @@ public class TestNieksztaltekChangeDigits {
         return Arrays.asList(
         	new Object[][]{ 
                	{376, new ArrayList<Integer>() {{ add(876); add(316); add(379);}}},
-               	{475356, new ArrayList<Integer>() {{ add(475856); add(445359); add(415356);}}},
-               	{-475356, new ArrayList<Integer>() {{ add(-475856); add(-445359); add(-415356);}}},
+               	{47556, new ArrayList<Integer>() {{ add(41556); add(47559);}}},
+               	{-47556, new ArrayList<Integer>() {{ add(-41556); add(-47559);}}},
         	});
     }
     

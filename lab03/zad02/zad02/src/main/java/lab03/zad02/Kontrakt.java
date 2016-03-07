@@ -44,8 +44,8 @@ public class Kontrakt implements Psikus {
 			else if (convertChars[whatChange]=='7'){
 				convertChars[whatChange]='1';
 			}
-			else{
-				convertChars[whatChange]='6';
+			else if (convertChars[whatChange]=='6'){
+				convertChars[whatChange]='9';
 			}
 			convert = String.valueOf(convertChars);
 			return (Integer.parseInt(convert));
