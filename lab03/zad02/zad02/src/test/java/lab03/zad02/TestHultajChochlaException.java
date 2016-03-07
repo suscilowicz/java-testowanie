@@ -38,5 +38,15 @@ public class TestHultajChochlaException {
 			assertTrue(true);
 		}
 	}
+	
+	@Test
+	public void testHultajChochlaNieudanyPsikus2() throws NieudanyPsikusException {
+		try {
+			kontrakt.HultajChochla(10);
+			fail("Test is incorrect");
+		} catch (NieudanyPsikusException e) {
+			assertTrue(true);
+		}
+	}
 
 }
