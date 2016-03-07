@@ -61,8 +61,11 @@ public class Kontrakt implements Psikus {
 	}
 
 	public boolean Titit(Integer liczba_dziel) {
-		// TODO Auto-generated method stub
-		return false;
+		if (liczba_dziel == 0) throw new ArithmeticException();
+		else if (liczba_dziel == null) throw new NullPointerException();
+		else if (cukierek == 0) return true;
+		else if (cukierek % liczba_dziel == 0) return true;
+		else return false;
 	}
 
 	public Integer HultajChochla(Integer liczba) throws NieudanyPsikusException {
