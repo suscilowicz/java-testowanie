@@ -69,8 +69,27 @@ public class Kontrakt implements Psikus {
 	}
 
 	public Integer HultajChochla(Integer liczba) throws NieudanyPsikusException {
-		// TODO Auto-generated method stub
-		return 0;
+		String convert = liczba.toString();
+		char [] convertChars = convert.toCharArray();
+		if (liczba == null) throw new NullPointerException();
+		else if (liczba >= -9 && liczba <=9 ) throw new NieudanyPsikusException();
+		else if (liczba % 10 == 0 && liczba >=-90 && liczba <= 90) throw new NieudanyPsikusException();
+		else {
+			int digit1 = random.nextInt(liczba.toString().length());
+			int digit2 = random.nextInt(liczba.toString().length());
+			if (convertChars[digit1]=='-') digit1++;
+			if (convertChars[digit2] =='-') digit2++;	
+			while (digit1 == digit2) {
+				digit2 = random.nextInt(liczba.toString().length());
+				if (convertChars[digit1]=='-') digit1++;
+				if (convertChars[digit2] =='-') digit2++;	
+			}
+			char temp = convertChars[digit1];
+			convertChars[digit1] = convertChars[digit2];
+			convertChars[digit2] = temp;
+		}
+		convert = String.valueOf(convertChars);
+		return (Integer.parseInt(convert));
 	}
 
 }

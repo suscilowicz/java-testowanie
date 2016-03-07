@@ -30,7 +30,7 @@ public class TestHultajChochlaCorrect {
     public static Iterable<Object[]> data() {
         return Arrays.asList(
         	new Object[][]{ 
-        		{468, new ArrayList<Integer>() {{ add(486); add(648); add(684); add(846);}}},
+        		{468, new ArrayList<Integer>() {{ add(486); add(648); add(684); add(846); add(864);}}},
                	{-12, new ArrayList<Integer>() {{ add(-21); }}},
                	{888, new ArrayList<Integer>() {{ add(888); }}}
         	});
