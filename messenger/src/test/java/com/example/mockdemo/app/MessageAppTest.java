@@ -1,13 +1,18 @@
 package com.example.mockdemo.app;
 
 import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+
 import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Test;
+import com.example.mockdemo.messenger.MessageServiceMock;
 
 public class MessageAppTest {
-
-	Messenger messenger = new Messenger();
+	MessageServiceMock msm;
+	Messenger messenger;
 
 	private final String VALID_SERVER = "inf.ug.edu.pl";
 	private final String INVALID_SERVER = "inf.ug.edu.eu";
@@ -15,13 +20,21 @@ public class MessageAppTest {
 	private final String VALID_MESSAGE = "some message";
 	private final String INVALID_MESSAGE = "ab";
 
-	@Test
-	public void checkSendingMessage() {
-
-		assertEquals(1, messenger.sendMessage(INVALID_SERVER, VALID_MESSAGE));
-		assertEquals(2, messenger.sendMessage(VALID_SERVER, INVALID_MESSAGE));
-
-		assertThat(messenger.sendMessage(VALID_SERVER, VALID_MESSAGE),
-				either(equalTo(0)).or(equalTo(1)));
+	@Before
+	public void setUp() throws Exception{
+		msm = new MessageServiceMock();
+		messenger = new Messenger(msm);
+	}
+	
+	@Test 
+	public void test(){
+		msm.setConnected(true);
+		assertEquals(0, messenger.testConnection(VALID_SERVER));
+	}
+	
+	@After
+	public void tearDown() throws Exception{
+		msm = null;
+		messenger = null;
 	}
 }
