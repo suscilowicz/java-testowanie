@@ -16,11 +16,14 @@ public class MessageAppTest {
 
 	private final String VALID_SERVER = "inf.ug.edu.pl";
 	private final String INVALID_SERVER = "inf.ug.edu.eu";
+	private final String INVALID_SERVER2 = "http://inf.ug.edu.pl";
+	private final String INVALID_SERVER3 = "https://inf.ug.edu.pl";
 	private final String NULL_SERVER = null;
 	private final String LEN_3_SERVER = ".pl";
 
 	private final String VALID_MESSAGE = "some message";
 	private final String INVALID_MESSAGE = "ab";
+	private final String NULL_MESSAGE = null;
 
 	@Before
 	public void setUp() throws Exception{
@@ -63,19 +66,100 @@ public class MessageAppTest {
 		msm.setConnected(false);
 		assertEquals(1, messenger.testConnection(NULL_SERVER));
 	}
-	
 	@Test 
-	public void testPolaczeniaGdyJestPolaczenieINazwaJestMniejszaOd3(){
-		msm.setConnected(false);
-		assertEquals(1, messenger.testConnection(LEN_3_SERVER));
+	public void testPolaczeniaGdyJestPolaczenieINazwaHttp(){
+		msm.setConnected(true);
+		assertEquals(1, messenger.testConnection(INVALID_SERVER2));
 	}
 	
 	@Test 
-	public void testPolaczeniaGdyNieMaPolaczeniaINazwaJestMniejszaOd3(){
+	public void testPolaczeniaGdyNieMaPolaczeniaINazwaHttp(){
 		msm.setConnected(false);
-		assertEquals(1, messenger.testConnection(LEN_3_SERVER));
+		assertEquals(1, messenger.testConnection(INVALID_SERVER2));
+	}
+	@Test 
+	public void testPolaczeniaGdyJestPolaczenieINazwaHttps(){
+		msm.setConnected(true);
+		assertEquals(1, messenger.testConnection(INVALID_SERVER3));
 	}
 	
+	@Test 
+	public void testPolaczeniaGdyNieMaPolaczeniaINazwaHttps(){
+		msm.setConnected(false);
+		assertEquals(1, messenger.testConnection(INVALID_SERVER3));
+	}
+	
+	@Test
+	public void testWyslanieWiadomosciPoprawne(){
+		msm.setSent(true);
+		assertEquals(0, messenger.sendMessage(VALID_SERVER, VALID_MESSAGE));
+	}
+	
+	@Test
+	public void testWyslanieWiadomosciNiepoprawne(){
+		msm.setSent(false);
+		assertEquals(1, messenger.sendMessage(VALID_SERVER, VALID_MESSAGE));
+	}
+	
+	@Test
+	public void testWyslanieWiadomosciNaZlySerwer(){
+		msm.setSent(false);
+		assertEquals(1, messenger.sendMessage(INVALID_SERVER, VALID_MESSAGE));
+	}
+	
+	@Test
+	public void testWyslanieWiadomosciNaZlySerwer2(){
+		msm.setSent(false);
+		assertEquals(1, messenger.sendMessage(INVALID_SERVER2, VALID_MESSAGE));
+	}
+	
+	@Test
+	public void testWyslanieWiadomosciNaZlySerwer3(){
+		msm.setSent(false);
+		assertEquals(1, messenger.sendMessage(INVALID_SERVER3, VALID_MESSAGE));
+	}
+	
+	@Test
+	public void testWyslanieWiadomosciNaSerwerGdzieDlugoscNazwyMniejszaOd3(){
+		msm.setSent(false);
+		assertEquals(2, messenger.sendMessage(LEN_3_SERVER, VALID_MESSAGE));
+	}
+	
+	@Test
+	public void testWyslanieNiepoprawnejWiadomosci(){
+		msm.setSent(false);
+		assertEquals(2, messenger.sendMessage(INVALID_SERVER, INVALID_MESSAGE));
+	}
+	
+	@Test
+	public void testWyslanieWiadomosciNull(){
+		msm.setSent(false);
+		assertEquals(2, messenger.sendMessage(INVALID_SERVER, NULL_MESSAGE));
+	}
+	
+	@Test
+	public void testWyslanieWiadomosciNull2(){
+		msm.setSent(false);
+		assertEquals(2, messenger.sendMessage(VALID_SERVER, NULL_MESSAGE));
+	}
+	
+	@Test
+	public void testWyslanieWiadomosciNaSerwerNull(){
+		msm.setSent(false);
+		assertEquals(2, messenger.sendMessage(NULL_SERVER, VALID_MESSAGE));
+	}
+	
+	@Test
+	public void testWyslanieWiadomosciNaSerwerNull2(){
+		msm.setSent(false);
+		assertEquals(2, messenger.sendMessage(NULL_SERVER, INVALID_MESSAGE));
+	}
+	
+	@Test
+	public void testWyslanieNullWiadomosciNaSerwerNull(){
+		msm.setSent(false);
+		assertEquals(2, messenger.sendMessage(NULL_SERVER, NULL_MESSAGE));
+	}
 	
 	
 	@After

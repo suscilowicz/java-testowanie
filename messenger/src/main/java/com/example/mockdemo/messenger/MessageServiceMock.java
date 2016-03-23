@@ -16,14 +16,16 @@ public class MessageServiceMock implements MessageService {
 
 	@Override
 	public ConnectionStatus checkConnection(String server) {
-		if (server != null && server.endsWith(".pl") && connected) 
+		if (server == null || server.contains("http://") || server.contains("https://") ) 
+			return ConnectionStatus.FAILURE;
+		else if (server.endsWith(".pl") && connected) 
 			return ConnectionStatus.SUCCESS;
 		else return ConnectionStatus.FAILURE;
 	}
 
 	@Override
 	public SendingStatus send(String server, String message) throws MalformedRecipientException {
-		if (server.isEmpty() || message.isEmpty())
+		if (server == null || message == null)
 			throw new MalformedRecipientException();
 		else if (server.length() < 4 || message.length() < 3)
 			throw new MalformedRecipientException();
