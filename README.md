@@ -1,8 +1,14 @@
-# Testowanie aplikacji Java
+﻿# Testowanie aplikacji Java
 ## Sebastian Uściłowicz
 
-[Lab1 17.02.2016](https://github.com/suscilowicz/java-testowanie/tree/master/lab01)
+[Lab1](https://github.com/suscilowicz/java-testowanie/tree/master/lab01)
 
-[Lab2 24.02.2016](https://github.com/suscilowicz/java-testowanie/tree/master/lab02)
+[Lab2](https://github.com/suscilowicz/java-testowanie/tree/master/lab02)
 
-[Lab3 02.03.2016 (Maven - Projekt 1)](https://github.com/suscilowicz/java-testowanie/tree/master/lab03)
+[Projekt 1](https://github.com/suscilowicz/java-testowanie/tree/master/lab03)
+
+[Projekt 2](https://github.com/suscilowicz/java-testowanie/tree/master/messenger)
+
+[Lab 7](https://github.com/suscilowicz/java-testowanie/tree/master/lab07)
+
+[Projekt 3](https://github.com/suscilowicz/java-testowanie/tree/master/projekt3)
