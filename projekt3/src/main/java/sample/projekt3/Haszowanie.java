@@ -23,7 +23,7 @@ public class Haszowanie {
 		Integer h = h(k);
 		boolean petla = true;
 		while (petla){
-			if (tabHaszujaca[h].equals(null)){
+			if (tabHaszujaca[h]==null){
 				tabHaszujaca[h] = k;
 				petla = false;
 			}
@@ -31,49 +31,49 @@ public class Haszowanie {
 			else {
 				h++;
 				if (h == m-1) h=0;
-				if (h == k) throw new IllegalArgumentException();
+				if (h == k) throw new ArrayIndexOutOfBoundsException();
 			}
 		}
 	}
 	
-	public boolean znajdzHasz (int k){
+	public Integer znajdzHasz (Integer k){
 		Integer h = h(k);
 		boolean petla = true;
-		boolean wynik = false;
+		Integer wynik = null;
 		while (petla){
-			if (tabHaszujaca[h].equals(null) || tabHaszujaca[h]!=k){
+			if (tabHaszujaca[h] == k) {
+				petla = false;
+				wynik = h;
+			}
+			else {
 				h++;
 				if (h == m-1) h=0;
-				if (h == k) petla = false;
-			}
-			else if (tabHaszujaca[h] == k) {
-				petla = false;
-				wynik = true;
+				if (h == k) {
+					petla = false;
+					throw new IllegalArgumentException();
+				}
 			}
 		}
 		return wynik;
 	}
 	
 	public void usunHash(int k){
-		if (znajdzHasz(k)==false){
-			throw new IllegalArgumentException();
-		}
-		else {
-			Integer h = h(k);
-			boolean petla = true;
-			while (petla){
-				if (tabHaszujaca[h].equals(null) || tabHaszujaca[h]!=k){
-					h++;
-					if (h == m-1) h=0;
-					if (h == k) petla = false;
-				}
-				else if (tabHaszujaca[h] == k) {
+		Integer h = h(k);
+		boolean petla = true;
+		while (petla){
+			if (tabHaszujaca[h].equals(null) || tabHaszujaca[h]!=k){
+				h++;
+				if (h == m-1) h=0;
+				if (h == k){
 					petla = false;
-					tabHaszujaca[h] = null;
+					throw new IllegalArgumentException();
 				}
 			}
+			else if (tabHaszujaca[h] == k) {
+				petla = false;
+				tabHaszujaca[h] = null;
+			}
 		}
-	}
-	
-	
+		
+	}	
 }
