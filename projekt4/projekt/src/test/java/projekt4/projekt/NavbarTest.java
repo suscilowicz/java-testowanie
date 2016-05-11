@@ -39,7 +39,7 @@ public class NavbarTest {
 		driver.findElement(By.xpath("//a[contains(text(),'Users')]"));
 		driver.findElement(By.xpath("//a[contains(text(),'Books')]"));
 		
-		driver.findElement(By.linkText("Account")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Account')]")).click();
 		driver.findElement(By.xpath("//a[contains(text(),'Log out')]")).click();
 		assertTrue(true);
 	}
@@ -47,7 +47,7 @@ public class NavbarTest {
 	@Test
 	public void navbarIncorrect(){
 		driver.get("http://suscilowicz-books-at-home.herokuapp.com");
-		driver.findElement(By.linkText("Account"));
+		driver.findElement(By.xpath("//a[contains(text(),'Account')]"));
 		assertTrue(true);
 	}
 	
