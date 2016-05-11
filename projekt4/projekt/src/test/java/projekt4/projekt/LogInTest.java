@@ -21,7 +21,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class LogInTest {
 	private static WebDriver driver;
 	WebElement element;
-	static String driverPath = "IE driver path";
 	
 	@BeforeClass
 	public static void driverSetup() {
@@ -43,9 +42,33 @@ public class LogInTest {
 		LogInForm login = new LogInForm(driver);
 		login.login("example@railstutorial.org", "foobar");
 		element = driver.findElement(By.linkText("Account"));
-		assertNotNull(element);
 		
+		assertNotNull(element);	
+		
+		element.click();
+		driver.findElement(By.xpath("//a[contains(text(),'Log out')]")).click();
 	}
+	
+	@Test
+	public void logInIncorrect(){
+		driver.get("http://suscilowicz-books-at-home.herokuapp.com/login");
+		LogInForm login = new LogInForm(driver);
+		login.login("example@railstutorial.org", "foobarr");
+		element = driver.findElement(By.xpath("//*[contains(text(),'Invalid email/password combination')]"));
+		assertNotNull(element);	
+	}
+	
+	@Test
+	public void logInIncorrect2(){
+		driver.get("http://suscilowicz-books-at-home.herokuapp.com/login");
+		LogInForm login = new LogInForm(driver);
+		login.login("", "");
+		element = driver.findElement(By.xpath("//*[contains(text(),'Invalid email/password combination')]"));
+		assertNotNull(element);	
+	}
+	
+	
+	
 	@AfterClass
 	public static void cleanp() {
 		driver.quit();
